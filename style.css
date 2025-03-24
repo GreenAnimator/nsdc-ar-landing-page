@@ -2,8 +2,9 @@
 
 :root {
     --white-color: #fbecd1;
+    --gray-color: #ccb68d;
     --dark-color: #5f0c20;
-    --brown-color: #693a2c;
+    --brown-color: #490012;
 }
 
 * {
@@ -12,17 +13,24 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--white-color);
+    width: 100vw;
 }
 
 header {
+    z-index: 10;
+    max-width: 100%;
+    top: 0;
+    position: sticky;
     display: flex;
     background-color: var(--dark-color);
     color: white;
     padding: 20px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     align-items: center;
     justify-content: space-between;
     font-size: 1.275rem;
@@ -57,9 +65,16 @@ header nav a:hover::before {
 }
 
 .container {
-    padding: 20px;
     text-align: center;
     margin-bottom: 40px;
+}
+
+.landing-page-header {
+    text-align: center;
+    padding: 32px 0px;
+    background-image: url("Virgen2.jpeg");
+    background-size: cover;
+    height: 325px;
 }
 
 .shadowed {
@@ -72,22 +87,47 @@ header nav a:hover::before {
          1px  1px 0 var(--dark-color); /* Sombras para simular el borde */
 }
 
-.landing-img {
-    height: 300px;
-    border-radius: 10px;
+.content {
+    padding: 20px 20px 0 20px;
 }
 
-.article {
+.collapsible {
     border: dotted 2px var(--dark-color);
-    border-radius: 10px;
-    padding: 10px;
+    width: 100%;
     text-align: left;
     font-size: 1.275rem;
     box-shadow: 10px 10px 0px rgba(0, 0, 0, .2);
 }
 
-.article-description {
-    border-top: dotted 2px var(--dark-color);
+.collapsible input {
+    display: none;
+}
+
+.collapsible label {
+    font-size: 1.5rem;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.collapsible-text {
+    max-height: 1px;
+    overflow: hidden;
+    position: relative;
+    top: -100%;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.collapsible input:checked ~ .collapsible-text {
+    max-height: 300px;
+    opacity: 1;
+    top: 0;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .info {
@@ -112,19 +152,24 @@ header nav a:hover::before {
 
 .ubicacion {
     border: 2px dotted var(--white-color);
-    border-radius: 10px;
     padding: 10px;
     box-shadow: 10px 10px 0px rgba(0, 0, 0, .2);
     height: fit-content;
+    width: fit-content;
     grid-area: Ubi;
+}
+
+.ubicacion iframe {
+    width: 320px;
+    height: 320px;
 }
 
 .contacto-box {
     border: 2px dotted var(--white-color);
-    border-radius: 10px;
     padding: 10px;
     box-shadow: 10px 10px 0px rgba(0, 0, 0, .2);
     height: fit-content;
+    width: fit-content;
 }
 
 .contacto-box a {
@@ -150,7 +195,7 @@ header nav a:hover::before {
 
 .arzobispado img{
     border-radius: 100%;
-    height: 275px;
+    max-height: 275px;
     box-shadow: 10px 10px 0px rgba(0, 0, 0, .2);
 }
 
@@ -159,4 +204,37 @@ footer {
     padding: 50px;
     color: var(--white-color);
     font-size: 1.275rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--dark-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--white-color);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-color);
+}
+
+@media (max-width: 768px) {
+    .landing-page-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .info-boxes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
